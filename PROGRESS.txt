@@ -1,0 +1,4 @@
+1. Installed Node.js, and set up Supabase and Vercel to deploy app with
+- Located and saved system variables (link, anon_key, and direct connection string)
+
+2. Set up "species" table in Supabase table editor
