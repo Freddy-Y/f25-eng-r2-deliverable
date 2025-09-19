@@ -2,12 +2,17 @@ import { Icons } from "@/components/icons";
 import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import type { Database } from "@/lib/schema";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 type Species = Database["public"]["Tables"]["species"]["Row"];
 
 
 export default function DetailedViewDialog({ species }: { species: Species }) {
+  const router = useRouter();
+  const [open, setOpen] = useState<boolean>(false);
+  
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="secondary">
           <Icons.add className="mr-3 h-5 w-5" />
