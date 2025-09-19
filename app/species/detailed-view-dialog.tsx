@@ -1,4 +1,3 @@
-import { Icons } from "@/components/icons";
 import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import type { Database } from "@/lib/schema";
@@ -13,7 +12,7 @@ export default function DetailedViewDialog({ species }: { species: Species }) {
     <Dialog>
       <DialogTrigger asChild>
         <Button variant="secondary">
-          <Icons.add className="mr-3 h-5 w-5" />
+          {/* <Icons.add className="mr-3 h-5 w-5" /> */}
           Learn More
         </Button>
       </DialogTrigger>
