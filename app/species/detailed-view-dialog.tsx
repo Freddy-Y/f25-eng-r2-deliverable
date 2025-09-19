@@ -10,9 +10,7 @@ export default function DetailedViewDialog({ species }: { species: Species }) {
   
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        <button> Learn More </button>
-      </DialogTrigger>
+
       <DialogContent className="max-h-screen overflow-y-auto sm:max-w-[600px]">
         <DialogHeader>
           <DialogTitle>Species Detailed View</DialogTitle>
