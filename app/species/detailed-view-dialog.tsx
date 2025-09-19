@@ -3,7 +3,6 @@ import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle, DialogTr
 import { Button } from "@/components/ui/button";
 import type { Database } from "@/lib/schema";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 type Species = Database["public"]["Tables"]["species"]["Row"];
 
 
