@@ -29,12 +29,9 @@ export default function DetailedViewDialog({ species }: { species: Species }) {
         <p> Total population: ${species.total_population}` </p>
         <p> Description: ${species.description}` </p>
         <div className="flex">
-          <Button type="submit" className="ml-1 mr-1 flex-auto">
-            Add Species
-          </Button>
           <DialogClose asChild>
-            <Button type="button" className="ml-1 mr-1 flex-auto" variant="secondary">
-              Cancel
+            <Button type="button" className="ml-1 mr-1 flex-auto" variant="secondary" onClick={() => router.refresh()}>
+              Exit
             </Button>
           </DialogClose>
         </div>
