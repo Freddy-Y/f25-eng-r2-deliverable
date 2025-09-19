@@ -9,10 +9,9 @@ type Species = Database["public"]["Tables"]["species"]["Row"];
 
 export default function DetailedViewDialog({ species }: { species: Species }) {
   const router = useRouter();
-  const [open, setOpen] = useState<boolean>(false);
   
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog>
       <DialogTrigger asChild>
         <Button variant="secondary">
           <Icons.add className="mr-3 h-5 w-5" />
@@ -23,11 +22,11 @@ export default function DetailedViewDialog({ species }: { species: Species }) {
         <DialogHeader>
           <DialogTitle>Species Detailed View</DialogTitle>
         </DialogHeader>
-        <p> Scientific Name: ${species.scientific_name}` </p>
-        <p> Common Name: ${species.common_name}` </p>
-        <p> Kingdom: ${species.kingdom}` </p>
-        <p> Total population: ${species.total_population}` </p>
-        <p> Description: ${species.description}` </p>
+        <p> Scientific Name: {species.scientific_name} </p>
+        <p> Common Name: {species.common_name} </p>
+        <p> Kingdom: {species.kingdom}` </p>
+        <p> Total population: {species.total_population} </p>
+        <p> Description: {species.description} </p>
         <div className="flex">
           <DialogClose asChild>
             <Button type="button" className="ml-1 mr-1 flex-auto" variant="secondary" onClick={() => router.refresh()}>
