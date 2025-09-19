@@ -1,5 +1,5 @@
 import { Icons } from "@/components/icons";
-import { Dialog, DialogClose, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import type { Database } from "@/lib/schema";
 type Species = Database["public"]["Tables"]["species"]["Row"];
