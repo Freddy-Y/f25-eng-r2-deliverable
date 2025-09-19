@@ -3,3 +3,6 @@
 - Debugged issue where package.json file tried to automatically update the supabase-js version, leading to VERY odd nonsensical bugs
 
 2. Set up "species" table in Supabase table editor
+
+3. Rather than my original plan of declaring a button in species-card.tsx and having it call a function when clicked (the way I would've with Python), 
+I instead directly called a function which would return that button, with all of its functionality already built into it. 
