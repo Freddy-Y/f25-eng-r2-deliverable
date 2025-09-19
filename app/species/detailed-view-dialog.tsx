@@ -11,10 +11,7 @@ export default function DetailedViewDialog({ species }: { species: Species }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="secondary">
-          {/* <Icons.add className="mr-3 h-5 w-5" /> */}
-          Learn More
-        </Button>
+        <button> Learn More </button>
       </DialogTrigger>
       <DialogContent className="max-h-screen overflow-y-auto sm:max-w-[600px]">
         <DialogHeader>
