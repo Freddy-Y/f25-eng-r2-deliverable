@@ -46,8 +46,10 @@ export default function SpeciesCard({ species }: { species: Species }) {
         </DialogTrigger>
         <DialogContent className="max-h-screen overflow-y-auto sm:max-w-[600px]">
           <DialogHeader>
-            <DialogTitle>Species Detailed View</DialogTitle>
-            <DialogDescription>Learn more about a new species here.</DialogDescription>
+            <DialogTitle>
+              {species.common_name} ({species.scientific_name})
+            </DialogTitle>
+            <DialogDescription>{species.description}</DialogDescription>
           </DialogHeader>
         </DialogContent>
       </Dialog>
