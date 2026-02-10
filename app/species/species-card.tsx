@@ -42,7 +42,7 @@ export default function SpeciesCard({ species }: { species: Species }) {
 
       <Dialog>
         <DialogTrigger asChild>
-          <Button className="mt-3 w-full">Learn More</Button>
+          <Button className="mt-3 w-full">Learn More!</Button>
         </DialogTrigger>
       </Dialog>
     </div>
