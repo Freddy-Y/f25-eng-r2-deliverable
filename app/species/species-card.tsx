@@ -49,7 +49,14 @@ export default function SpeciesCard({ species }: { species: Species }) {
             <DialogTitle>
               {species.common_name} ({species.scientific_name})
             </DialogTitle>
-            <DialogDescription>{species.description}</DialogDescription>
+            <DialogDescription>
+              <br />
+              Kingdom: {species.kingdom}
+              <br />
+              Total Population: {species.total_population}
+              <br />
+              {species.description}
+            </DialogDescription>
           </DialogHeader>
         </DialogContent>
       </Dialog>
