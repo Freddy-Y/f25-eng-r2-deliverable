@@ -14,10 +14,10 @@ import { Button } from "@/components/ui/button";
 import {
   Dialog,
   // DialogClose,
-  // DialogContent,
-  // DialogDescription,
-  // DialogHeader,
-  // DialogTitle,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 
@@ -42,8 +42,14 @@ export default function SpeciesCard({ species }: { species: Species }) {
 
       <Dialog>
         <DialogTrigger asChild>
-          <Button className="mt-3 w-full">Learn More!</Button>
+          <Button className="mt-3 w-full">Learn More</Button>
         </DialogTrigger>
+        <DialogContent className="max-h-screen overflow-y-auto sm:max-w-[600px]">
+          <DialogHeader>
+            <DialogTitle>Species Detailed View</DialogTitle>
+            <DialogDescription>Learn more about a new species here.</DialogDescription>
+          </DialogHeader>
+        </DialogContent>
       </Dialog>
     </div>
   );
