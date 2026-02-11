@@ -24,7 +24,6 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-// import { Form } from "@/components/ui/form";
 import { toast } from "@/components/ui/use-toast";
 import { createBrowserSupabaseClient } from "@/lib/client-utils";
 import type { Database } from "@/lib/schema";
@@ -72,7 +71,6 @@ export default function SpeciesCard({ species }: { species: Species }) {
   // Control open/closed state of the dialog
   const [open, setOpen] = useState<boolean>(false);
   const [isEditing, setIsEditing] = useState<boolean>(false);
-  // const [attemptedEdit, setAttemptingEdit] = useState<boolean>(false);
 
   async function checkAuthorship(species_author: string): Promise<void> {
     const supabase = createBrowserSupabaseClient();
@@ -80,7 +78,7 @@ export default function SpeciesCard({ species }: { species: Species }) {
       data: { user },
     } = await supabase.auth.getUser();
     if (user) {
-      const userId = user.id; // This is your current user's UUID
+      const userId = user.id;
 
       if (userId == species_author) {
         setIsEditing(true);
@@ -164,27 +162,6 @@ export default function SpeciesCard({ species }: { species: Species }) {
       <h4 className="text-lg font-light italic">{species.common_name}</h4>
       <p>{species.description ? species.description.slice(0, 150).trim() + "..." : ""}</p>
       {/* Replace the button with the detailed view dialog. */}
-
-      {/* <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger asChild>
-          <Button className="mt-3 w-full">Learn More</Button>
-        </DialogTrigger>
-        <DialogContent className="max-h-screen overflow-y-auto sm:max-w-[600px]">
-          <DialogHeader>
-            <DialogTitle>
-              {species.common_name} ({species.scientific_name})
-            </DialogTitle>
-            <DialogDescription>
-              <br />
-              Kingdom: {species.kingdom}
-              <br />
-              Total Population: {species.total_population}
-              <br />
-              {species.description}
-            </DialogDescription>
-          </DialogHeader>
-        </DialogContent>
-      </Dialog> */}
 
       <Dialog open={open} onOpenChange={setOpen}>
         <div className="flex">
