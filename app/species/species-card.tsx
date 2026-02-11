@@ -302,7 +302,7 @@ export default function SpeciesCard({ species }: { species: Species }) {
                 />
                 <div className="flex">
                   <Button type="submit" className="ml-1 mr-1 flex-auto">
-                    Add Species
+                    Edit Species
                   </Button>
                   <DialogClose asChild>
                     <Button type="button" className="ml-1 mr-1 flex-auto" variant="secondary">
