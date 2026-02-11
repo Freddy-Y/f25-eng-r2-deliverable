@@ -84,10 +84,13 @@ export default function SpeciesCard({ species }: { species: Species }) {
 
       if (userId == species_author) {
         setIsEditing(true);
+      } else {
+        toast({
+          title: "You do not have edit permission.",
+          description: "You may only edit the species cards of species that you are the author of.",
+          variant: "destructive",
+        });
       }
-      // else {
-      //   setAttemptingEdit(true);
-      // }
     }
   }
 
