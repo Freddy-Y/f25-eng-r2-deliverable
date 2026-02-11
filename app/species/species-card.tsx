@@ -89,20 +89,23 @@ export default function SpeciesCard({ species }: { species: Species }) {
   // Control open/closed state of the dialog
   const [open, setOpen] = useState<boolean>(false);
 
+  // Control open/closed state of the dialog
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+
   const onSubmit = async (input: SpeciesFormValue) => {
     // The `input` prop contains data that has already been processed by zod. We can now use it in a supabase query
     const supabase = createBrowserSupabaseClient();
-    const { error } = await supabase.from("species").insert([
-      {
-        author: species.author,
+    const { error } = await supabase
+      .from("species")
+      .update({
         common_name: input.common_name,
         description: input.description,
         kingdom: input.kingdom,
         scientific_name: input.scientific_name,
         total_population: input.total_population,
         image: input.image,
-      },
-    ]);
+      })
+      .eq("id", species.id);
 
     // Catch and report errors from Supabase and exit the onSubmit function with an early 'return' if an error occurred.
     if (error) {
@@ -119,15 +122,15 @@ export default function SpeciesCard({ species }: { species: Species }) {
     // Practically, this line can be removed because router.refresh() also resets the form. However, we left it as a reminder that you should generally consider form "cleanup" after an add/edit operation.
     form.reset(defaultValues);
 
-    setOpen(false);
+    setIsEditing(false);
 
     // Refresh all server components in the current route. This helps display the newly created species because species are fetched in a server component, species/page.tsx.
     // Refreshing that server component will display the new species from Supabase
     router.refresh();
 
     return toast({
-      title: "New species added!",
-      description: "Successfully added " + input.scientific_name + ".",
+      title: "Species card edited!",
+      description: "Successfully edited " + input.scientific_name + ".",
     });
   };
 
@@ -164,7 +167,7 @@ export default function SpeciesCard({ species }: { species: Species }) {
         </DialogContent>
       </Dialog>
 
-      <Dialog>
+      <Dialog open={isEditing} onOpenChange={setIsEditing}>
         <DialogTrigger asChild>
           <Button className="mt-3 w-full">Edit</Button>
         </DialogTrigger>
