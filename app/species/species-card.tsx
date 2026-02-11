@@ -69,6 +69,28 @@ const speciesSchema = z.object({
 type SpeciesFormValue = z.infer<typeof speciesSchema>;
 
 export default function SpeciesCard({ species }: { species: Species }) {
+  // Control open/closed state of the dialog
+  const [open, setOpen] = useState<boolean>(false);
+  const [isEditing, setIsEditing] = useState<boolean>(false);
+  // const [attemptedEdit, setAttemptingEdit] = useState<boolean>(false);
+
+  async function checkAuthorship(species_author: string): Promise<void> {
+    const supabase = createBrowserSupabaseClient();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
+    if (user) {
+      const userId = user.id; // This is your current user's UUID
+
+      if (userId == species_author) {
+        setIsEditing(true);
+      }
+      // else {
+      //   setAttemptingEdit(true);
+      // }
+    }
+  }
+
   const defaultValues: SpeciesFormValue = {
     scientific_name: species.scientific_name,
     common_name: species.common_name,
@@ -85,12 +107,6 @@ export default function SpeciesCard({ species }: { species: Species }) {
   });
 
   const router = useRouter();
-
-  // Control open/closed state of the dialog
-  const [open, setOpen] = useState<boolean>(false);
-
-  // Control open/closed state of the dialog
-  const [isEditing, setIsEditing] = useState<boolean>(false);
 
   const onSubmit = async (input: SpeciesFormValue) => {
     // The `input` prop contains data that has already been processed by zod. We can now use it in a supabase query
@@ -146,7 +162,7 @@ export default function SpeciesCard({ species }: { species: Species }) {
       <p>{species.description ? species.description.slice(0, 150).trim() + "..." : ""}</p>
       {/* Replace the button with the detailed view dialog. */}
 
-      <Dialog open={open} onOpenChange={setOpen}>
+      {/* <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <Button className="mt-3 w-full">Learn More</Button>
         </DialogTrigger>
@@ -165,12 +181,36 @@ export default function SpeciesCard({ species }: { species: Species }) {
             </DialogDescription>
           </DialogHeader>
         </DialogContent>
+      </Dialog> */}
+
+      <Dialog open={open} onOpenChange={setOpen}>
+        <div className="flex">
+          <Button type="button" className="mt-3 w-full" onClick={() => void checkAuthorship(species.author)}>
+            Edit
+          </Button>
+          <DialogTrigger asChild>
+            <Button className="mt-3 w-full">Learn More</Button>
+          </DialogTrigger>
+        </div>
+
+        <DialogContent className="max-h-screen overflow-y-auto sm:max-w-[600px]">
+          <DialogHeader>
+            <DialogTitle>
+              {species.common_name} ({species.scientific_name})
+            </DialogTitle>
+            <DialogDescription>
+              <br />
+              Kingdom: {species.kingdom}
+              <br />
+              Total Population: {species.total_population}
+              <br />
+              {species.description}
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
       </Dialog>
 
       <Dialog open={isEditing} onOpenChange={setIsEditing}>
-        <DialogTrigger asChild>
-          <Button className="mt-3 w-full">Edit</Button>
-        </DialogTrigger>
         <DialogContent className="max-h-screen overflow-y-auto sm:max-w-[600px]">
           <DialogHeader>
             <DialogTitle>Edit Species Information</DialogTitle>
